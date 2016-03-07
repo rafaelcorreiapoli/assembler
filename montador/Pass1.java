@@ -221,7 +221,7 @@ class Pass1 extends Pass {
                 return false;
             } else {
                 locationCounter = newLoc;
-                System.out.println("location counter " + locationCounter);
+                System.out.println("location counters " + locationCounter);
                 return true;
             }
         } catch (AssemblerException e) {

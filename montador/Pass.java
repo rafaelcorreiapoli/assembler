@@ -197,22 +197,28 @@ public abstract class Pass {
 
         // 'AAAA
         //
-
-        String base = arg.substring(0, 1);
-        String address = arg.substring(1, arg.length());
-
-        if (!isNumber(address)) {
+        if (!isNumber(arg)) {
             throw new NumberFormatException("nao esta na base correta");
         }
+
+        String base = arg.substring(0, 1);
+        String valor = arg.substring(1, arg.length());
+
+
         switch (base) {
             case HEX_CODE:
-                return Integer.parseInt(address, 16);
+                return Integer.parseInt(valor, 16);
             case BINARY_CODE:
-                return Integer.parseInt(address, 2);
+                return Integer.parseInt(valor, 2);
             case OCTAL_CODE:
-                return Integer.parseInt(address, 8);
+                return Integer.parseInt(valor, 8);
+            case DECIMAL_CODE:
+                return Integer.parseInt(valor, 10);
             case ASCII_CODE:
-                return 0;
+                int result = 0;
+                for(int i = 0; i < valor.length(); ++i) {
+                    result += (int)Math.pow(256.0D, (double)(valor.length() - 1 - i)) * valor.charAt(i);
+                }
             default:
                 throw new AssemblerException("base desconhecida");
 

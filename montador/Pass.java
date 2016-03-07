@@ -219,6 +219,7 @@ public abstract class Pass {
                 for(int i = 0; i < valor.length(); ++i) {
                     result += (int)Math.pow(256.0D, (double)(valor.length() - 1 - i)) * valor.charAt(i);
                 }
+                return result;
             default:
                 throw new AssemblerException("base desconhecida");
 
